@@ -1,0 +1,78 @@
+{% extends "layout.html" %}
+
+{% block title %}Dashboard - Wealth Tracker{% endblock %}
+
+{% block extra_css %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{% endblock %}
+
+{% block content %}
+<div class="dashboard">
+    <h1>Welcome, {{ session.username }}!</h1>
+    
+    <div class="stats-grid">
+        <div class="stat-card stat-income">
+            <h3>Total Income</h3>
+            <p class="stat-value">${{ "%.2f"|format(total_income) }}</p>
+        </div>
+        <div class="stat-card stat-expense">
+            <h3>Total Expenses</h3>
+            <p class="stat-value">${{ "%.2f"|format(total_expense) }}</p>
+        </div>
+        <div class="stat-card stat-net">
+            <h3>Net Worth</h3>
+            <p class="stat-value {% if net_worth >= 0 %}positive{% else %}negative{% endif %}">
+                ${{ "%.2f"|format(net_worth) }}
+            </p>
+        </div>
+    </div>
+
+    <div class="charts-section">
+        <h2>Financial Overview</h2>
+        <div class="charts-grid">
+            <div class="chart-container">
+                <canvas id="categoryChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <canvas id="monthlyChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <div class="recent-transactions">
+        <h2>Recent Transactions</h2>
+        {% if recent_transactions %}
+            <table class="transactions-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Type</th>
+                        <th>Category</th>
+                        <th>Description</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for transaction in recent_transactions %}
+                    <tr>
+                        <td>{{ transaction.date }}</td>
+                        <td><span class="badge badge-{{ transaction.type }}">{{ transaction.type }}</span></td>
+                        <td>{{ transaction.category }}</td>
+                        <td>{{ transaction.description or '-' }}</td>
+                        <td class="amount {{ transaction.type }}">
+                            {% if transaction.type == 'income' %}+{% else %}-{% endif %}${{ "%.2f"|format(transaction.amount) }}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p class="no-data">No transactions yet. <a href="{{ url_for('add_transaction') }}">Add your first transaction</a></p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/charts.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+
+{% block title %}Add Transaction - Wealth Tracker{% endblock %}
+
+{% block content %}
+<div class="form-page">
+    <div class="form-card">
+        <h2>Add Transaction</h2>
+        <form method="POST" action="{{ url_for('add_transaction') }}">
+            <div class="form-group">
+                <label for="type">Type</label>
+                <select id="type" name="type" class="form-control" required>
+                    <option value="">Select type...</option>
+                    <option value="income">Income</option>
+                    <option value="expense">Expense</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="category">Category</label>
+                <input type="text" id="category" name="category" class="form-control" required 
+                       placeholder="e.g., Salary, Food, Rent, Entertainment" list="categories">
+                <datalist id="categories">
+                    <option value="Salary">
+                    <option value="Freelance">
+                    <option value="Investment">
+                    <option value="Food">
+                    <option value="Rent">
+                    <option value="Utilities">
+                    <option value="Entertainment">
+                    <option value="Transportation">
+                    <option value="Healthcare">
+                    <option value="Shopping">
+                </datalist>
+            </div>
+            
+            <div class="form-group">
+                <label for="amount">Amount</label>
+                <input type="number" id="amount" name="amount" class="form-control" step="0.01" min="0.01" required placeholder="0.00">
+            </div>
+            
+            <div class="form-group">
+                <label for="date">Date</label>
+                <input type="date" id="date" name="date" class="form-control" required value="{{ today }}">
+            </div>
+            
+            <div class="form-group">
+                <label for="description">Description (Optional)</label>
+                <textarea id="description" name="description" class="form-control" rows="3" placeholder="Additional details..."></textarea>
+            </div>
+            
+            <div class="form-buttons">
+                <button type="submit" class="btn btn-primary">Add Transaction</button>
+                <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    // Set today's date as default
+    document.getElementById('date').value = new Date().toISOString().split('T')[0];
+</script>
+{% endblock %}

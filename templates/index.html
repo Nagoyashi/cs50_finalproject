@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="hero">
+    <h1>Welcome to Wealth Tracker</h1>
+    <p>Track your income, expenses, and visualize your financial journey</p>
+    <div class="hero-buttons">
+        <a href="{{ url_for('register') }}" class="btn btn-primary">Get Started</a>
+        <a href="{{ url_for('login') }}" class="btn btn-secondary">Login</a>
+    </div>
+</div>
+
+<div class="features">
+    <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <h3>Track Transactions</h3>
+        <p>Record your income and expenses with detailed categories</p>
+    </div>
+    <div class="feature-card">
+        <div class="feature-icon">📈</div>
+        <h3>Visualize Data</h3>
+        <p>See your financial data through interactive charts and graphs</p>
+    </div>
+    <div class="feature-card">
+        <div class="feature-icon">🔒</div>
+        <h3>Secure & Private</h3>
+        <p>Your financial data is encrypted and kept private</p>
+    </div>
+</div>
+{% endblock %}
