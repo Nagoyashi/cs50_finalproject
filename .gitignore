@@ -1,24 +1,47 @@
-# Byte-compiled / cache
+# Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
-*.pyo
-*.pyd
+*$py.class
 
-# Virtual environments
-.env
-.venv
-env/
+# Virtual environment
+.venv/
 venv/
+env/
+ENV/
 
-# SQLite databases
-*.db
+# SQLite database files
 *.sqlite3
+*.db
+*.db-journal
 
-# MacOS files
+# Flask instance folder
+instance/
+
+# VS Code settings
+.vscode/
+
+# Python packaging
+*.egg-info/
+*.egg
+dist/
+build/
+pip-wheel-metadata/
+
+# C build artifacts
+*.o
+*.out
+*.a
+*.so
+*.exe
+
+# Logs and temporary files
+*.log
+*.tmp
+*.swp
+*.swo
+
+# MacOS
 .DS_Store
 
-# Logs
-*.log
-
-# VS Code
-.vscode/
+# Linux
+*.lock
