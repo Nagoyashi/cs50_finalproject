@@ -1,7 +1,6 @@
 {
   "name": "Python + Flask + C + SQLite3",
   "image": "mcr.microsoft.com/devcontainers/python:3.12",
-  
   "customizations": {
     "vscode": {
       "extensions": [
@@ -13,10 +12,11 @@
       ],
       "settings": {
         "terminal.integrated.defaultProfile.linux": "bash",
-        "editor.formatOnSave": true
+        "editor.formatOnSave": true,
+        "python.defaultInterpreterPath": "/workspaces/cs50_finalproject/.venv/bin/python"
       }
     }
   },
-  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y sqlite3 libsqlite3-dev build-essential && python3 -m venv .venv && .venv/bin/pip install --upgrade pip flask requests",
+  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y sqlite3 libsqlite3-dev build-essential && python3 -m venv .venv && .venv/bin/pip install --upgrade pip flask requests && echo 'source /workspaces/cs50_finalproject/.venv/bin/activate' >> ~/.bashrc",
   "remoteUser": "vscode"
 }
