@@ -2,10 +2,6 @@
 
 {% block title %}Dashboard - Wealth Tracker{% endblock %}
 
-{% block extra_css %}
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-{% endblock %}
-
 {% block content %}
 <div class="dashboard">
     <h1>Welcome, {{ session.username }}!</h1>
@@ -74,5 +70,6 @@
 {% endblock %}
 
 {% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="{{ url_for('static', filename='js/charts.js') }}"></script>
 {% endblock %}

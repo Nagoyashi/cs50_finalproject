@@ -4,9 +4,10 @@ from functools import wraps
 import sqlite3
 from datetime import datetime
 import os
+import secrets
 
 app = Flask(__name__)
-app.secret_key = os.environ.get('SECRET_KEY', 'dev-secret-key-change-in-production')
+app.secret_key = os.environ.get('SECRET_KEY', secrets.token_hex(32))
 
 DATABASE = 'wealth_tracker.db'
 
