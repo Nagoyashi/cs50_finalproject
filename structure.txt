@@ -1,0 +1,69 @@
+cs50_finalproject/
+
+/backend
+  app.py
+  routes.py
+  helpers.py
+  db_init.py
+
+/frontend
+  src/
+    App.jsx
+    Sidebar.jsx
+    pages/
+      Dashboard.jsx
+      Investments.jsx
+      CashFlow.jsx
+      FireCalculator.jsx
+
+
+Navigation / Structure
+	1.	Dashboard
+	2.	Investments / Net Worth
+	3.	Cash Flow
+	4.	FIRE Calculator
+
+
+1. Dashboard / Home
+	•	Quick snapshot of key metrics:
+	•	Current net worth
+	•	Monthly cash flow (income minus expenses)
+	•	FIRE status (optional small widget)
+	•	Mini chart: net worth trend over the last 6–12 months
+	•	Maybe a “Quick Add” button for income/expense or investment update
+
+2. Investments / Net Worth
+	•	Investments Page
+	•	Manual input for: ETFs, stocks, crypto, real estate, cash.
+	•	For each investment: name, type, current value, purchase value (optional).
+	•	Summary: total investment value, allocation pie chart.
+	•	Net Worth Page
+	•	Auto-calculated from Investments + cash balances + debts.
+	•	Line chart of net worth over time.
+	•	Historical tracking: store daily or weekly snapshots.
+	•	Optional: small table showing gains/losses per investment
+
+3. Cash Flow Page
+	•	Manual input of Income (salary, side hustle, dividends)
+	•	Manual input of Expenses (rent, groceries, subscriptions, others)
+	•	Categorize expenses (maybe just “Housing / Food / Lifestyle / Other”)
+	•	Bar chart of income vs expenses monthly
+	•	Optional: cumulative savings per month
+
+4. FIRE Calculator
+	•	Inputs:
+	•	Current net worth
+	•	Annual savings
+	•	Desired annual spending in retirement
+	•	Expected investment return (default: 5–8% annual)
+	•	Output:
+	•	Years until financial independence
+	•	Maybe a small chart showing projection over time
+	•	Optional: include a “safe withdrawal rate” simulation (4% rule)
+
+#5. Optional / Nice-to-Have MVP Features
+	•	Quick Add Modal: one popup to quickly add income, expense, or investment.
+	•	Currency Support: simple dropdown for EUR/USD, maybe optional for MVP.
+	•	Monthly Summary: auto-generated simple summary of net worth change, total expenses, savings rate.
+	•	Data Export: CSV of transactions and investments.
+	•	Simple Authentication: optional if you want to protect personal data (or just local storage/session for now).

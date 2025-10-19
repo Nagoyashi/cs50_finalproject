@@ -4,6 +4,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from .helpers import login_required, get_portfolio, get_cashflow, get_networth
 from .db_init import get_db_connection
 
+# All API routes under /api
 api_bp = Blueprint("api", __name__, url_prefix="/api")
 
 # ---- Auth ----
@@ -25,7 +26,8 @@ def register_api():
     conn = get_db_connection()
     try:
         conn.execute(
-            "INSERT INTO users (username, hash) VALUES (?, ?)", (username, hash_pw))
+            "INSERT INTO users (username, hash) VALUES (?, ?)", (username, hash_pw)
+        )
         conn.commit()
         return jsonify({"message": "Registration successful"}), 201
     except Exception:
@@ -42,7 +44,8 @@ def login_api():
 
     conn = get_db_connection()
     user = conn.execute(
-        "SELECT * FROM users WHERE username = ?", (username,)).fetchone()
+        "SELECT * FROM users WHERE username = ?", (username,)
+    ).fetchone()
     conn.close()
 
     if user and check_password_hash(user["hash"], password):
@@ -52,16 +55,16 @@ def login_api():
 
 
 # ---- Portfolio ----
-@api_bp.route("/portfolio")
+@api_bp.route("/portfolio", methods=["GET"])
 @login_required
 def portfolio():
     user_id = session["user_id"]
-    portfolio, cash, total = get_portfolio(user_id)
-    return jsonify({"portfolio": portfolio, "cash": cash, "total": total})
+    portfolio_data, cash, total = get_portfolio(user_id)
+    return jsonify({"portfolio": portfolio_data, "cash": cash, "total": total})
 
 
 # ---- Networth ----
-@api_bp.route("/networth")
+@api_bp.route("/networth", methods=["GET"])
 @login_required
 def networth():
     user_id = session["user_id"]
@@ -69,7 +72,7 @@ def networth():
 
 
 # ---- Cashflow ----
-@api_bp.route("/cashflow")
+@api_bp.route("/cashflow", methods=["GET"])
 @login_required
 def cashflow():
     user_id = session["user_id"]
